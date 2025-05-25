@@ -27,11 +27,18 @@ const Bikes = () => {
   }, [bikesData]);
 
   // Calculate pagination
-  const indexOfLastBike = currentPage * itemsPerPage;
-  const indexOfFirstBike = indexOfLastBike - itemsPerPage;
-  console.log(indexOfFirstBike, indexOfLastBike)
-  const currentBikes = bikes?.slice(indexOfFirstBike, indexOfLastBike) || [];
-  const totalPages = Math.ceil((bikes ? bikes.length : 0) / itemsPerPage);
+ const totalBikes = bikes?.length || 0;
+
+const indexOfLastBike = currentPage * itemsPerPage;
+const indexOfFirstBike = indexOfLastBike - itemsPerPage;
+
+// Always check that bikes is an array before slicing
+const currentBikes = Array.isArray(bikes)
+  ? bikes.slice(indexOfFirstBike, indexOfLastBike)
+  : [];
+
+const totalPages = Math.ceil(totalBikes / itemsPerPage);
+
 
   const paginate = (pageNumber) => {
     if (pageNumber > 0 && pageNumber <= totalPages) {

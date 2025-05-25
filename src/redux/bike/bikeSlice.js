@@ -3,17 +3,17 @@ import * as bikeAPI from './bikeAPI';
 
 export const fetchBikes = createAsyncThunk('bike/fetchAll', async () => {
   const res = await bikeAPI.getAllBikes();
-  return res.data;
+  return res.data.data;
 });
 
 export const createNewBike = createAsyncThunk('bike/create', async (data) => {
   const res = await bikeAPI.createBike(data);
-  return res.data;
+  return res.data.data;
 });
 
 export const updateExistingBike = createAsyncThunk('bike/update', async ({ id, data }) => {
   const res = await bikeAPI.updateBike(id, data);
-  return res.data;
+  return res.data.data;
 });
 
 export const deleteExistingBike = createAsyncThunk('bike/delete', async (id) => {

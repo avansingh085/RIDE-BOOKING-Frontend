@@ -39,7 +39,7 @@ const NavBar = () => {
 
   const handleSignOut = () => {
     // Replace with your actual sign out logic
-    localStorage.removeItem("userToken");
+    localStorage.removeItem("BikeToken");
     setIsAuthenticated(false);
     setShowProfileDropdown(false);
   };
@@ -72,13 +72,13 @@ const NavBar = () => {
             Contact Us
           </Link>
           <Link
-            to="/host-bike"
+            to="/about"
             className="relative block px-4 py-2 hover:text-gray-300 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all hover:after:w-full"
           >
             About us
           </Link>
           <Link
-            to="/host-bike"
+            to="/privacy"
             className="relative block px-4 py-2 hover:text-gray-300 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all hover:after:w-full"
           >
             Privacy Policy
@@ -102,7 +102,7 @@ const NavBar = () => {
               {showProfileDropdown && (
                 <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg py-1 z-50 transform origin-top-right transition-all duration-200 ease-in-out">
                   <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-150">My Profile</Link>
-                  <Link to="/bookings" className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-150">My Bookings</Link>
+                  {/* <Link to="/bookings" className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-150">My Bookings</Link> */}
                   <Link to="/settings" className="block px-4 py-2 hover:bg-gray-100 transition-colors duration-150">Settings</Link>
                   <hr className="my-1" />
                   <button
@@ -151,7 +151,7 @@ const NavBar = () => {
             Contact Us
           </Link>
           <Link
-            to="/host-bike"
+            to="/privacy"
             className="block py-2 hover:text-gray-300 transition-colors duration-200"
             onClick={() => setShowMobileMenu(false)}
           >
@@ -168,13 +168,13 @@ const NavBar = () => {
                 >
                   My Profile
                 </Link>
-                <Link
+                {/* <Link
                   to="/bookings"
                   className="block py-2 hover:text-gray-300 transition-colors duration-200"
                   onClick={() => setShowMobileMenu(false)}
                 >
                   My Bookings
-                </Link>
+                </Link> */}
                 <button
                   onClick={handleSignOut}
                   className="w-full text-left py-2 text-red-400 hover:text-red-300 transition-colors duration-200"

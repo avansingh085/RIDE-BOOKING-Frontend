@@ -11,6 +11,11 @@ import Bikes from './pages/Bikes/Bikes'
 import BikeDetailsPage from './pages/Bikes/BikeDetails'
 import BikeBookingPage from './pages/BikeDetais/Bike'
 import ProfilePage from './pages/Profile/ProfilePage'
+import Contact from './components/contact/contact'
+import About from './components/about/about'
+import PrivacyPolicy from './components/privacyPolicy/privacyPolicy'
+import Settings from './components/Settings/Settings'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,8 +32,20 @@ function App() {
           <Route path="/bike-details/:bikeId" element={ <Layout>
             <BikeBookingPage />
           </Layout>} />
+          <Route path="/contact" element={<Layout>
+            <Contact/>
+          </Layout>}/>
+           <Route path="/about" element={<Layout>
+            <About/>
+          </Layout>}/>
+           <Route path="/privacy" element={<Layout>
+            <PrivacyPolicy/>
+          </Layout>}/>
           <Route path="/profile" element={ <Layout>
             <ProfilePage />
+          </Layout>} />
+          <Route path="/settings" element={ <Layout>
+            <Settings />
           </Layout>} />
          
       <Route path="/login" element={<Login />} />
