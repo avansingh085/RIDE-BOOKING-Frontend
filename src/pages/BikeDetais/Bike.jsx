@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import apiClient from "../../../utils/apiClient";
 import { fetchUser } from "../../redux/user/userSlice";
+
 const BikeBookingPage = () => {
   const { bikeId } = useParams();
 
@@ -57,8 +58,6 @@ const dispatch=useDispatch();
   };
   // handle valid duration
   useEffect(() => {
-
-
     if (selectedDates.dropoffDate && selectedDates.pickupDate && selectedDates.dropoffTime && selectedDates.pickupTime) {
       const startTime = combineDateAndTime(selectedDates.pickupDate, selectedDates.pickupTime);
       const endTime = combineDateAndTime(selectedDates.dropoffDate, selectedDates.dropoffTime);
@@ -685,6 +684,7 @@ const dispatch=useDispatch();
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

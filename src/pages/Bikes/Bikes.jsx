@@ -3,17 +3,20 @@ import { Filter, ChevronLeft, ChevronRight, Grid3X3, List } from "lucide-react";
 import FilterBar from "../../components/Bike/BikeFilter";
 import BikeHero from "../../components/Bike/BikeHero";
 import BikeCard from "../../components/Bike/BikeCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilters } from "../../redux/bike/bikeSlice";
 
 const Bikes = () => {
   const [view, setView] = useState("grid");
   const [currentPage, setCurrentPage] = useState(1);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [selectedFilterValue, setSelectedFilterValue] = useState("relevance");
+  const dispatch = useDispatch();
+  const BikesData = useSelector((state) => state.bike.bikes);
   const itemsPerPage = 8;
 
-  const bikesData = useSelector((state) => state.bike.bikes);
+  const bikesData = useSelector((state) => state.bike.filters);
 
   const [bikes, setBikes] = useState([]);
 
@@ -26,18 +29,40 @@ const Bikes = () => {
     }, 800);
   }, [bikesData]);
 
+  useEffect(() => {
+    if (selectedFilterValue === "relevance") {
+      dispatch(setFilters(BikesData));
+      return;
+    }
+    let updatedBikes = [...BikesData];
+    if (selectedFilterValue === "price-low") {
+
+      updatedBikes.sort((a, b) => a.pricePerHour - b.pricePerHour);
+      dispatch(setFilters(updatedBikes));
+    }
+    if (selectedFilterValue === "price-high") {
+      updatedBikes.sort((a, b) => b.pricePerHour - a.pricePerHour);
+      dispatch(setFilters(updatedBikes));
+    }
+    if (selectedFilterValue === "rating") {
+      updatedBikes.sort((a, b) => b.rating - a.rating);
+      dispatch(setFilters(updatedBikes));
+    }
+
+  }, [selectedFilterValue])
+
   // Calculate pagination
- const totalBikes = bikes?.length || 0;
+  const totalBikes = bikes?.length || 0;
 
-const indexOfLastBike = currentPage * itemsPerPage;
-const indexOfFirstBike = indexOfLastBike - itemsPerPage;
+  const indexOfLastBike = currentPage * itemsPerPage;
+  const indexOfFirstBike = indexOfLastBike - itemsPerPage;
 
-// Always check that bikes is an array before slicing
-const currentBikes = Array.isArray(bikes)
-  ? bikes.slice(indexOfFirstBike, indexOfLastBike)
-  : [];
+  // Always check that bikes is an array before slicing
+  const currentBikes = Array.isArray(bikes)
+    ? bikes.slice(indexOfFirstBike, indexOfLastBike)
+    : [];
 
-const totalPages = Math.ceil(totalBikes / itemsPerPage);
+  const totalPages = Math.ceil(totalBikes / itemsPerPage);
 
 
   const paginate = (pageNumber) => {
@@ -90,7 +115,9 @@ const totalPages = Math.ceil(totalBikes / itemsPerPage);
               <label htmlFor="sort" className="text-sm font-medium text-gray-700 mr-2">Sort by:</label>
               <select
                 id="sort"
+                value={selectedFilterValue}
                 className="text-sm border-gray-300 rounded-md px-3 py-1.5 focus:ring-black focus:border-black"
+                onChange={(e) => setSelectedFilterValue(e.target.value)}
               >
                 <option value="relevance">Relevance</option>
                 <option value="price-low">Price: Low to High</option>
@@ -153,7 +180,7 @@ const totalPages = Math.ceil(totalBikes / itemsPerPage);
                     </div>
                   )}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent py-2 px-3">
-                    <div className="text-xl font-bold text-white">${bike.pricePerHour}/hr</div>
+                    <div className="text-xl font-bold text-white">{bike.pricePerHour}Rs/hr</div>
                   </div>
                 </div>
 
@@ -190,8 +217,8 @@ const totalPages = Math.ceil(totalBikes / itemsPerPage);
                     <button
                       onClick={() => window.location.href = `/bike-details/${bike._id}`}
                       className={`text-sm font-medium px-4 py-2 rounded-lg transition-colors ${bike.available
-                          ? "bg-black text-white hover:bg-gray-800"
-                          : "bg-gray-200 text-gray-500 cursor-not-allowed"
+                        ? "bg-black text-white hover:bg-gray-800"
+                        : "bg-gray-200 text-gray-500 cursor-not-allowed"
                         }`}
                       disabled={!bike.available}
                     >
@@ -279,8 +306,8 @@ const totalPages = Math.ceil(totalBikes / itemsPerPage);
                       key={page}
                       onClick={() => paginate(page)}
                       className={`w-10 h-10 rounded-lg flex items-center justify-center ${currentPage === page
-                          ? "bg-black text-white font-medium"
-                          : "border border-gray-300 text-gray-600 hover:bg-gray-100"
+                        ? "bg-black text-white font-medium"
+                        : "border border-gray-300 text-gray-600 hover:bg-gray-100"
                         }`}
                     >
                       {page}

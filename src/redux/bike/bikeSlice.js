@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as bikeAPI from './bikeAPI';
+import reducer from '../user/userSlice';
 
 export const fetchBikes = createAsyncThunk('bike/fetchAll', async () => {
   const res = await bikeAPI.getAllBikes();
@@ -25,10 +26,18 @@ const bikeSlice = createSlice({
   name: 'bike',
   initialState: {
     bikes: [],
+    filters:[],
     loading: false,
     error: null
   },
-  reducers: {},
+  reducers: {
+    setBikes:(state,action)=>{
+      state.bikes=action.payload;
+    },
+    setFilters:(state,action)=>{
+        state.filters=action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBikes.pending, (state) => {
@@ -50,5 +59,5 @@ const bikeSlice = createSlice({
       });
   }
 });
-
+export const {setBikes,setFilters}=bikeSlice.actions;
 export default bikeSlice.reducer;

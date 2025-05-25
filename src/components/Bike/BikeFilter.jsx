@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Search, SlidersHorizontal, ChevronDown, X } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilters } from "../../redux/bike/bikeSlice";
 
 const FilterBar = () => {
   const [showFilters, setShowFilters] = useState(false);
@@ -8,7 +10,8 @@ const FilterBar = () => {
   const [brands, setBrands] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const filtersRef = useRef(null);
-
+  const dispatch=useDispatch();
+   const {bikes}=useSelector((state)=>state.bike);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (filtersRef.current && !filtersRef.current.contains(event.target)) {
@@ -23,6 +26,38 @@ const FilterBar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showFilters]);
+
+  //filter bike 
+   useEffect(() => {
+    if(!bikes)
+      return;
+  let updatedBikes = [...bikes];
+
+  // if (duration?.length) {
+  //   updatedBikes = updatedBikes.filter(bk => duration.includes(bk.duration));
+  // }
+  if (brands?.length) {
+    updatedBikes = updatedBikes.filter(bk => brands.includes((bk.brand).toLowerCase()));
+  }
+
+  if (searchQuery) {
+    updatedBikes = updatedBikes.filter(bk =>
+      Object.values(bk).some(val =>
+        String(val).toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }
+
+  if (priceSort === "low-to-high") {
+    updatedBikes.sort((a, b) => a.pricePerHour - b.pricePerHour);
+  } else if (priceSort === "high-to-low") {
+    updatedBikes.sort((a, b) => b.pricePerHour - a.pricePerHour);
+  }
+  
+    dispatch(setFilters(updatedBikes))
+  // setFilteredBikes(updatedBikes);
+}, [bikes, duration, brands, searchQuery, priceSort]);
+
 
   const handleDurationChange = (value) => {
     if (duration.includes(value)) {
@@ -170,7 +205,7 @@ const FilterBar = () => {
             </div>
 
             {/* Time Duration filter */}
-            <div>
+            {/* <div>
               <h3 className="font-semibold text-gray-800 mb-3 text-sm uppercase tracking-wider">Time Duration</h3>
               <div className="space-y-3">
                 <label className="flex items-center cursor-pointer group">
@@ -201,7 +236,7 @@ const FilterBar = () => {
                   <span className="ml-3 text-gray-700 group-hover:text-black transition-colors">Weekly</span>
                 </label>
               </div>
-            </div>
+            </div> */}
 
             {/* Brand filter */}
             <div>

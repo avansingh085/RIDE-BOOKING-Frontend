@@ -69,3 +69,4 @@ const LocationSearchForm = ({ containerStyles = {}, buttonStyles = {} }) => {
 };
 
 export default LocationSearchForm;
+
