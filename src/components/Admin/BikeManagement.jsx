@@ -67,7 +67,7 @@ export default function BikeManager() {
     const [imageUploading, setImageUploading] = useState(false);
     const [submitType, setSubmitType] = useState("update");
     const [formData, setFormData] = useState({
-        id: null,
+        _id: null,
         name: "",
         model: "",
         type: "",
@@ -107,7 +107,6 @@ export default function BikeManager() {
         if (bike) {
             setFormData({
                 ...bike,
-                image: null, // reset image input (show old separately maybe)
             });
         } else {
             setFormData({
@@ -183,7 +182,7 @@ export default function BikeManager() {
                     });
 
                     if (response.status === 200) {
-                        return response.data.imageUrl; // assuming backend returns { imageUrl: "..." }
+                        return response.data.imageUrl;
                     } else {
                         throw new Error("Upload failed");
                     }
@@ -273,29 +272,6 @@ export default function BikeManager() {
         setFormData((f) => ({ ...f, specifications: newSpecs }));
     };
 
-    // Save bike (create or update)
-    const saveBike = () => {
-        // Validation can be added here
-        if (!formData.name || !formData.model || !formData.type) {
-            alert("Please fill required fields (Name, Model, Type)");
-            return;
-        }
-
-        if (formData.id) {
-            // Update
-            setBikes((prev) =>
-                prev.map((b) => (b.id === formData.id ? { ...formData } : b))
-            );
-        } else {
-            // Create new
-            setBikes((prev) => [
-                ...prev,
-                { ...formData, id: Date.now().toString() },
-            ]);
-        }
-        setModalOpen(false);
-    };
-
     // Delete handlers
 
     const openDeleteModal = (id) => {
@@ -313,7 +289,7 @@ export default function BikeManager() {
             } catch (err) {
 
             }
-            setBikes((prev) => prev.filter((b) => b.id !== deleteId));
+            setBikes((prev) => prev.filter((b) => String(b._id) !== String(deleteId)));
             setDeleteModalOpen(false);
         } else {
             alert("Type DELETE exactly to confirm");

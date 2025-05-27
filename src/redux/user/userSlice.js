@@ -3,6 +3,7 @@ import { getUser, updateUser, deleteUser } from './userAPI';
 
 export const fetchUser = createAsyncThunk('user/fetch', async (thunkAPI) => {
   try {
+   
     const res = await getUser();
     return res.data;
   } catch (err) {
@@ -33,7 +34,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
     profile: null,
-    loading: false,
+    loading: true,
     error: null,
     deleted: false,
   },

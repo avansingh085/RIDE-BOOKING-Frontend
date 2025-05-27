@@ -8,15 +8,15 @@ const NavBar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
-  const authUser = useSelector((state) => state.auth.user);
+  // const authUser = useSelector((state) => state.auth.user);
   const { profile, loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   // Simulate checking authentication status
-  useEffect(() => {
-    // Replace this with your actual auth check logic
-    dispatch(fetchBikes());
-    dispatch(fetchUser());
-  }, [authUser]);
+  // useEffect(() => {
+  //   // Replace this with your actual auth check logic
+  //   dispatch(fetchBikes());
+  //   dispatch(fetchUser());
+  // }, [authUser]);
   useEffect(() => {
 
     if (profile) {

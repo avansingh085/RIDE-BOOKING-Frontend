@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3001/api', 
+  baseURL: 'https://ride-booking-q3v7.onrender.com/api', 
   headers: {
     'Content-Type': 'application/json',
   },

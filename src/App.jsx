@@ -20,15 +20,22 @@ import { useDispatch,useSelector } from 'react-redux'
 import { fetchBikes } from './redux/bike/bikeSlice'
 import { fetchUser } from './redux/user/userSlice'
 import { useEffect } from 'react'
+import Loader from './pages/Loader/Loader'
 function App() {
   const [count, setCount] = useState(0)
   const dispatch=useDispatch();
   const authUser = useSelector((state) => state.auth.user);
+  const {loading}=useSelector((state)=>state.user)
   useEffect(() => {
      
       dispatch(fetchBikes());
       dispatch(fetchUser());
     }, [authUser]);
+   
+   if(loading)
+   {
+    return <Loader/>
+   }
   return (
     <>
      <Routes>
