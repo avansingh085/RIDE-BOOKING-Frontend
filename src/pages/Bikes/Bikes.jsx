@@ -29,27 +29,26 @@ const Bikes = () => {
     }, 800);
   }, [bikesData]);
 
-  useEffect(() => {
-    if (selectedFilterValue === "relevance") {
-      dispatch(setFilters(BikesData));
-      return;
-    }
-    let updatedBikes = [...BikesData];
-    if (selectedFilterValue === "price-low") {
+ useEffect(() => {
+  if (!BikesData || BikesData.length === 0) return;
 
-      updatedBikes.sort((a, b) => a.pricePerHour - b.pricePerHour);
-      dispatch(setFilters(updatedBikes));
-    }
-    if (selectedFilterValue === "price-high") {
-      updatedBikes.sort((a, b) => b.pricePerHour - a.pricePerHour);
-      dispatch(setFilters(updatedBikes));
-    }
-    if (selectedFilterValue === "rating") {
-      updatedBikes.sort((a, b) => b.rating - a.rating);
-      dispatch(setFilters(updatedBikes));
-    }
+  if (selectedFilterValue === "relevance") {
+    dispatch(setFilters(BikesData));
+    return;
+  }
 
-  }, [selectedFilterValue])
+  let updatedBikes = [...BikesData];
+
+  if (selectedFilterValue === "price-low") {
+    updatedBikes.sort((a, b) => a.pricePerHour - b.pricePerHour);
+  } else if (selectedFilterValue === "price-high") {
+    updatedBikes.sort((a, b) => b.pricePerHour - a.pricePerHour);
+  } else if (selectedFilterValue === "rating") {
+    updatedBikes.sort((a, b) => b.rating - a.rating);
+  }
+
+  dispatch(setFilters(updatedBikes));
+}, [selectedFilterValue, BikesData]);
 
   // Calculate pagination
   const totalBikes = bikes?.length || 0;
@@ -58,7 +57,7 @@ const Bikes = () => {
   const indexOfFirstBike = indexOfLastBike - itemsPerPage;
 
   // Always check that bikes is an array before slicing
-  const currentBikes = Array.isArray(bikes)
+  const currentBikes = Array.isArray(bikesData)
     ? bikes.slice(indexOfFirstBike, indexOfLastBike)
     : [];
 
