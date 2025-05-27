@@ -15,11 +15,20 @@ import Contact from './components/contact/contact'
 import About from './components/about/about'
 import PrivacyPolicy from './components/privacyPolicy/privacyPolicy'
 import Settings from './components/Settings/Settings'
-
-
+import Admin from './pages/Admin/Admin'
+import { useDispatch,useSelector } from 'react-redux'
+import { fetchBikes } from './redux/bike/bikeSlice'
+import { fetchUser } from './redux/user/userSlice'
+import { useEffect } from 'react'
 function App() {
   const [count, setCount] = useState(0)
-
+  const dispatch=useDispatch();
+  const authUser = useSelector((state) => state.auth.user);
+  useEffect(() => {
+     
+      dispatch(fetchBikes());
+      dispatch(fetchUser());
+    }, [authUser]);
   return (
     <>
      <Routes>
@@ -49,6 +58,7 @@ function App() {
           </Layout>} />
          
       <Route path="/login" element={<Login />} />
+      <Route path="/admin" element={<Admin/>}/>
     </Routes>
     </>
   )

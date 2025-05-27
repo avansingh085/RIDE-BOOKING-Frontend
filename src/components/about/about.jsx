@@ -1,10 +1,12 @@
 import React from 'react';
+import apiClient from '../../../utils/apiClient';
 
 const About = () => {
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-md my-8 text-gray-800">
       <h1 className="text-3xl font-bold mb-4">About Us</h1>
-
+     
       <p className="mb-4">
         Welcome to our application! We are passionate about building user-friendly, efficient, and scalable digital solutions to solve real-world problems.
       </p>
