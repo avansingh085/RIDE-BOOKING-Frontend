@@ -8,9 +8,11 @@ const NavBar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [isAdmin,setIsAdmin]=useState(false);
   // const authUser = useSelector((state) => state.auth.user);
   const { profile, loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  
   // Simulate checking authentication status
   // useEffect(() => {
   //   // Replace this with your actual auth check logic
@@ -21,6 +23,10 @@ const NavBar = () => {
 
     if (profile) {
       setIsAuthenticated(true);
+      if(profile?.isAdmin)
+      {
+        setIsAdmin(true);
+      }
     }
     if (error) {
       setIsAuthenticated(false);
@@ -83,6 +89,12 @@ const NavBar = () => {
           >
             Privacy Policy
           </Link>
+         { isAdmin&&<Link
+            to="/admin"
+            className="relative block px-4 py-2 hover:text-gray-300 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all hover:after:w-full"
+          >
+            Admin
+          </Link>}
         </div>
 
         {/* Authentication Section */}
@@ -157,6 +169,13 @@ const NavBar = () => {
           >
             Refund Policy
           </Link>
+        { isAdmin&&<Link
+            to="/admin"
+            className="block py-2 hover:text-gray-300 transition-colors duration-200"
+            onClick={() => setShowMobileMenu(false)}
+          >
+            Admin
+          </Link>}
 
           <div className="mt-4 pt-4 border-t border-gray-700">
             {isAuthenticated ? (

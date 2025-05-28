@@ -16,57 +16,58 @@ import About from './components/about/about'
 import PrivacyPolicy from './components/privacyPolicy/privacyPolicy'
 import Settings from './components/Settings/Settings'
 import Admin from './pages/Admin/Admin'
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchBikes } from './redux/bike/bikeSlice'
 import { fetchUser } from './redux/user/userSlice'
 import { useEffect } from 'react'
 import Loader from './pages/Loader/Loader'
+import AdminProtectRoute from './components/Admin/AdminProtectRoute';
+import UserProtectRoute from './components/profile/UserProtectRoute';
 function App() {
   const [count, setCount] = useState(0)
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const authUser = useSelector((state) => state.auth.user);
-  const {loading}=useSelector((state)=>state.user)
+  const { loading } = useSelector((state) => state.user)
   useEffect(() => {
-     
-      dispatch(fetchBikes());
-      dispatch(fetchUser());
-    }, [authUser]);
-   
-   if(loading)
-   {
-    return <Loader/>
-   }
+
+    dispatch(fetchBikes());
+    dispatch(fetchUser());
+  }, [authUser]);
+console.log(authUser)
+  if (loading) {
+    return <Loader />
+  }
   return (
     <>
-     <Routes>
-      <Route path="/" element={ <Layout>
-            <Home />
-          </Layout>} />
-          <Route path="/bikes" element={ <Layout>
-            <Bikes />
-          </Layout>} />
-          <Route path="/bike-details/:bikeId" element={ <Layout>
-            <BikeBookingPage />
-          </Layout>} />
-          <Route path="/contact" element={<Layout>
-            <Contact/>
-          </Layout>}/>
-           <Route path="/about" element={<Layout>
-            <About/>
-          </Layout>}/>
-           <Route path="/privacy" element={<Layout>
-            <PrivacyPolicy/>
-          </Layout>}/>
-          <Route path="/profile" element={ <Layout>
-            <ProfilePage />
-          </Layout>} />
-          <Route path="/settings" element={ <Layout>
-            <Settings />
-          </Layout>} />
-         
-      <Route path="/login" element={<Login />} />
-      <Route path="/admin" element={<Admin/>}/>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Layout>
+          <Home />
+        </Layout>} />
+        <Route path="/bikes" element={<Layout>
+          <Bikes />
+        </Layout>} />
+        <Route path="/bike-details/:bikeId" element={<Layout>
+          <BikeBookingPage />
+        </Layout>} />
+        <Route path="/contact" element={<Layout>
+          <Contact />
+        </Layout>} />
+        <Route path="/about" element={<Layout>
+          <About />
+        </Layout>} />
+        <Route path="/privacy" element={<Layout>
+          <PrivacyPolicy />
+        </Layout>} />
+        <Route path="/profile" element={<UserProtectRoute><Layout>
+          <ProfilePage />
+        </Layout></UserProtectRoute>} />
+        <Route path="/settings" element={<Layout>
+          <Settings />
+        </Layout>} />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<AdminProtectRoute><Admin /></AdminProtectRoute>} />
+      </Routes>
     </>
   )
 }
