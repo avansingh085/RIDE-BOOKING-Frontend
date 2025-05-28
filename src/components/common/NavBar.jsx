@@ -27,6 +27,10 @@ const NavBar = () => {
       {
         setIsAdmin(true);
       }
+      else
+      {
+        setIsAdmin(false);
+      }
     }
     if (error) {
       setIsAuthenticated(false);

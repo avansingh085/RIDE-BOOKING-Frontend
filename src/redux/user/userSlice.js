@@ -34,6 +34,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
     profile: null,
+   
     loading: true,
     error: null,
     deleted: false,
@@ -56,6 +57,7 @@ const userSlice = createSlice({
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.profile = action.payload;
+
       })
       .addCase(deleteUserProfile.fulfilled, (state) => {
         state.deleted = true;
