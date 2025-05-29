@@ -19,7 +19,7 @@ const Contact = () => {
     setError('');
     setMessageIsSending(true)
     try{
-        await apiClient.post('/contact',formData)
+        await apiClient.post('/contact/contact',formData)
         setFormData({
     name: '',
     email: '',
@@ -28,6 +28,7 @@ const Contact = () => {
     }
     catch(err)
     {
+        console.log(err)
            setError('error during message send ')
     }finally{
         setMessageIsSending(false);

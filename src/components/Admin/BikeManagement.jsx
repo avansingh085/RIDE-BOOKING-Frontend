@@ -303,7 +303,7 @@ export default function BikeManager() {
 
     return (
 
-        <div className="p-6 max-w-7xl mx-auto">
+        <div className="p-6 max-w-7xl mx-auto shadow-2xl">
             <h1 className="text-3xl font-bold mb-6">Manage Bikes</h1>
 
             {/* Search */}
