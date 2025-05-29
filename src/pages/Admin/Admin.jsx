@@ -112,33 +112,43 @@ const Admin = () => {
 
         {/* Revenue Chart */}
         <RevenueChart revenueData={revenueData} />
- <nav className="bg-white shadow px-6 py-4 flex space-x-6  mt-10">
-        <button
-          className={`px-4 py-2 shadow-2xl rounded-md font-semibold ${activeSection === "bike" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
-          onClick={() => setActiveSection("bike")}
-        >
-          Bikes
-        </button>
-        <button
-          className={`px-4 py-2 rounded-md font-semibold ${activeSection === "messages" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
-          onClick={() => setActiveSection("messages")}
-        >
-          Messages
-        </button>
-         <button
-          className={`px-4 py-2 rounded-md font-semibold ${activeSection === "payment" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
-          onClick={() => setActiveSection("payment")}
-        >
-          Payment
-        </button>
-         <button
-          className={`px-4 py-2 rounded-md font-semibold ${activeSection === "booking" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
-          onClick={() => setActiveSection("booking")}
-        >
-          Booking
-        </button>
-        {/* Add more sections here if needed */}
-      </nav>
+ <nav className="bg-white shadow px-4 py-3 mt-10">
+  <div className="flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0">
+    <button
+      className={`px-4 py-2 rounded-md font-semibold transition-all duration-300 ${
+        activeSection === "bike" ? "bg-blue-600 text-white" : "bg-gray-200 text-black"
+      }`}
+      onClick={() => setActiveSection("bike")}
+    >
+      Bikes
+    </button>
+    <button
+      className={`px-4 py-2 rounded-md font-semibold transition-all duration-300 ${
+        activeSection === "messages" ? "bg-blue-600 text-white" : "bg-gray-200 text-black"
+      }`}
+      onClick={() => setActiveSection("messages")}
+    >
+      Messages
+    </button>
+    <button
+      className={`px-4 py-2 rounded-md font-semibold transition-all duration-300 ${
+        activeSection === "payment" ? "bg-blue-600 text-white" : "bg-gray-200 text-black"
+      }`}
+      onClick={() => setActiveSection("payment")}
+    >
+      Payment
+    </button>
+    <button
+      className={`px-4 py-2 rounded-md font-semibold transition-all duration-300 ${
+        activeSection === "booking" ? "bg-blue-600 text-white" : "bg-gray-200 text-black"
+      }`}
+      onClick={() => setActiveSection("booking")}
+    >
+      Booking
+    </button>
+  </div>
+</nav>
+
         {/* Dynamic Section */}
         <div className="mt-6">
           {renderSection()}
