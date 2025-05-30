@@ -38,7 +38,7 @@ console.log(authUser)
     return <Loader />
   }
   return (
-    <>
+    <div className='w-screen overflow-x-hidden' >
       <Routes>
         <Route path="/" element={<Layout>
           <Home />
@@ -68,7 +68,7 @@ console.log(authUser)
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminProtectRoute><Admin /></AdminProtectRoute>} />
       </Routes>
-    </>
+    </div>
   )
 }
 
