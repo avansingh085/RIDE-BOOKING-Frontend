@@ -159,6 +159,13 @@ const NavBar = () => {
           >
             Home
           </Link>
+           <Link
+            to="/bikes"
+            className="block py-2 hover:text-gray-300 transition-colors duration-200"
+            onClick={() => setShowMobileMenu(false)}
+          >
+            Bikes
+          </Link>
           <Link
             to="/contact"
             className="block py-2 hover:text-gray-300 transition-colors duration-200"
