@@ -325,59 +325,59 @@ export default function BikeManager() {
                 + Add New Bike
             </button>
 
-           {/* Bikes table */}
-<div className="overflow-x-auto mb-12">
-  <table className="w-full min-w-[600px] border-collapse border border-gray-300">
-    <thead className="bg-gray-100">
-      <tr>
-        <th className="border border-gray-300 p-2 text-left">Name</th>
-        <th className="border border-gray-300 p-2 text-left">Model</th>
-        <th className="border border-gray-300 p-2 text-left">Type</th>
-        <th className="border border-gray-300 p-2 text-left">Seats</th>
-        <th className="border border-gray-300 p-2 text-left">Horsepower</th>
-        <th className="border border-gray-300 p-2 text-left">Fuel</th>
-        <th className="border border-gray-300 p-2 text-left">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {filteredBikes.length === 0 ? (
-        <tr>
-          <td colSpan={7} className="text-center p-4">
-            No bikes found
-          </td>
-        </tr>
-      ) : (
-        filteredBikes.map((bike) => (
-          <tr key={bike._id} className="border border-gray-300 hover:bg-gray-50">
-            <td className="p-2">{bike.name}</td>
-            <td className="p-2">{bike.model}</td>
-            <td className="p-2">{bike.type}</td>
-            <td className="p-2">{bike.seats}</td>
-            <td className="p-2">{bike.horsepower}</td>
-            <td className="p-2">{bike.fuel}</td>
-            <td className="p-2 space-x-2">
-              <button
-                onClick={() => {
-                  openModal(bike);
-                  setSubmitType("update");
-                }}
-                className="text-blue-600 hover:underline"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => openDeleteModal(bike._id)}
-                className="text-red-600 hover:underline"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))
-      )}
-    </tbody>
-  </table>
-</div>
+            {/* Bikes table */}
+            <div className="overflow-x-auto mb-12">
+                <table className="w-full min-w-[600px] border-collapse border border-gray-300">
+                    <thead className="bg-gray-100">
+                        <tr>
+                            <th className="border border-gray-300 p-2 text-left">Name</th>
+                            <th className="border border-gray-300 p-2 text-left">Model</th>
+                            <th className="border border-gray-300 p-2 text-left">Type</th>
+                            <th className="border border-gray-300 p-2 text-left">Seats</th>
+                            <th className="border border-gray-300 p-2 text-left">Horsepower</th>
+                            <th className="border border-gray-300 p-2 text-left">Fuel</th>
+                            <th className="border border-gray-300 p-2 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filteredBikes.length === 0 ? (
+                            <tr>
+                                <td colSpan={7} className="text-center p-4">
+                                    No bikes found
+                                </td>
+                            </tr>
+                        ) : (
+                            filteredBikes.map((bike) => (
+                                <tr key={bike._id} className="border border-gray-300 hover:bg-gray-50">
+                                    <td className="p-2">{bike.name}</td>
+                                    <td className="p-2">{bike.model}</td>
+                                    <td className="p-2">{bike.type}</td>
+                                    <td className="p-2">{bike.seats}</td>
+                                    <td className="p-2">{bike.horsepower}</td>
+                                    <td className="p-2">{bike.fuel}</td>
+                                    <td className="p-2 space-x-2">
+                                        <button
+                                            onClick={() => {
+                                                openModal(bike);
+                                                setSubmitType("update");
+                                            }}
+                                            className="text-blue-600 hover:underline"
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            onClick={() => openDeleteModal(bike._id)}
+                                            className="text-red-600 hover:underline"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
             {/* Create/Edit Modal */}
             {modalOpen && (
