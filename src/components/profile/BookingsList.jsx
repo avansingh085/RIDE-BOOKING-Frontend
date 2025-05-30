@@ -45,7 +45,7 @@ const BookingsList = () => {
       }
     }
   };
-console.log(bookings,"PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")
+
   useEffect(() => {
     // Simulated fetch call with more diverse data
     // setBookings([

@@ -4,13 +4,13 @@ const LocalServiceCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   
   const locations = [
-    { id: 1, name: "Gazipur", image: "/api/placeholder/200/200" },
-    { id: 2, name: "Mohammud Pur", image: "/api/placeholder/200/200" },
-    { id: 3, name: "Gulshan", image: "/api/placeholder/200/200" },
-    { id: 4, name: "Dhanmondi", image: "/api/placeholder/200/200" },
-    { id: 5, name: "Mohakali", image: "/api/placeholder/200/200" },
-    { id: 6, name: "Banani", image: "/api/placeholder/200/200" },
-    { id: 7, name: "Uttara", image: "/api/placeholder/200/200" }
+    { id: 1, name: "Gazipur", image: "https://www.tourmyindia.com/blog//wp-content/uploads/2015/12/bike-riding-in-india.jpg" },
+    { id: 2, name: "Mohammud Pur", image: "https://www.tourmyindia.com/blog//wp-content/uploads/2016/12/Mountain-Bikking-Adventure-in-Sikkim.jpg" },
+    { id: 3, name: "Gulshan", image: "https://www.tourmyindia.com/blog//wp-content/uploads/2015/02/Leh-Sri-Nagar-Motor-Bike-Safari.jpg" },
+    { id: 4, name: "Dhanmondi", image: "https://www.tourmyindia.com/blog//wp-content/uploads/2018/06/Exotic-Kerala-Holiday-Package.jpg" },
+    { id: 5, name: "Mohakali", image: "https://www.tourmyindia.com/blog//wp-content/uploads/2015/12/Spiti-Valley-biking.jpg" },
+    { id: 6, name: "Banani", image: "https://www.tourmyindia.com/blog//wp-content/uploads/2015/12/arunachal-biking.jpg" },
+    { id: 7, name: "Uttara", image: "https://www.tourmyindia.com/blog//wp-content/uploads/2016/12/Mountain-Bikking-Adventure-in-Sikkim.jpg" }
   ];
 
   const showLocations = () => {

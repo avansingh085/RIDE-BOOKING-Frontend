@@ -18,36 +18,41 @@ const Hero = () => {
             To contribute to positive change and achieve our sustainability goals with many extraordinary
           </p>
           <button
-          onClick={() => {
-            window.location.href = "/bikes";
-          }}
-          className="border border-white text-white font-semibold py-3 px-6 rounded hover:bg-white hover:text-black transition">
+            onClick={() => {
+              window.location.href = "/bikes";
+            }}
+            className="border border-white  text-white font-semibold py-3 px-6 rounded hover:bg-white hover:text-black transition">
             Rent Bike
           </button>
+
         </div>
 
-        {/* Image Section */}
-        <div className="w-full md:w-1/2 relative flex justify-center items-center right-5 bottom-10">
-            {/* Car Image */}
-            <img
-                src={bike}
-                alt="Hero Car"
-                className="max-w-[500px] md:max-w-[600px] xl:max-w-[650px] object-contain z-10 relative bottom-5"
-            />
-            
-            {/* Bike Image */}
-            <img
-                src={bike2}
-                alt="Hero Bike"
-                className="absolute right-40 top-5 bottom-5 lg:w-[600px] sm:w-[550px] md:w-[400px] object-contain z-20"
-            />
-            <img
-                src={bike3}
-                alt="Hero Bike"
-                className="absolute right-20 top-20 bottom-5 lg:w-[500px] sm:w-[550px] md:w-[400px] object-contain z-20"
-                loading="lazy"
-            />
-            </div>
+       {/* Image Section */}
+<div className="w-full md:w-1/2 relative flex justify-center items-center right-5 bottom-10">
+
+  {/* Car Image */}
+  <img
+    src={bike}
+    alt="Hero Car"
+    className="max-w-[90vw] md:max-w-[600px] xl:max-w-[650px] object-contain z-10 relative bottom-5"
+  />
+
+  {/* Bike Image */}
+  {/* <img
+    src={bike2}
+    alt="Hero Bike"
+    className="absolute right-10 md:right-40 top-5 bottom-5 w-[60vw] sm:w-[400px] md:w-[600px] object-contain z-20"
+  /> */}
+  
+  <img
+    src={bike3}
+    alt="Hero Bike"
+    loading="lazy"
+    className="absolute right-5 md:right-20 top-20 bottom-5 w-[50vw] sm:w-[350px] md:w-[500px] object-contain z-20"
+  />
+  
+</div>
+
 
       </div>
     </section>

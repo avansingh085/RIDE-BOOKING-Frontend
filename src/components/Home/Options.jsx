@@ -66,7 +66,7 @@ const RentOptions = () => {
         </div>
         <div>
           <img 
-            src="/api/placeholder/600/400" 
+            src="https://media.gettyimages.com/id/1387193426/photo/car-salesmen-and-saleswoman-discussing-over-digital-tablet-while-laughing.jpg?s=612x612&w=0&k=20&c=FcXqxLRmc6eCi_d4B3I7Umxwq23xY4stpPxHAJlzkQM=" 
             alt="Business man with clipboard near car" 
             className="w-full rounded-lg shadow-lg"
           />
