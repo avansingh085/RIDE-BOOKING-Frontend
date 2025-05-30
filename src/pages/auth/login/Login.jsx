@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { login, register } from '../../../redux/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import apiClient from '../../../../utils/apiClient';
-
+// import { GoogleLogin } from '@react-oauth/google';
 const Login = () => {
   const [formState, setFormState] = useState('signup');
   const [formData, setFormData] = useState({
@@ -44,6 +44,8 @@ const Login = () => {
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
+
+  
 
   const toggleMode = () => {
     setFormState((prev) => (prev === 'login' ? 'signup' : 'login'));
@@ -294,6 +296,11 @@ const Login = () => {
             )}
           </form>
         </div>
+        {/* <GoogleLogin
+  onSuccess={handleGoogleSuccess}
+  onError={() => alert('Login Failed')}
+  useOneTap
+/> */}
       </div>
     </div>
   );
